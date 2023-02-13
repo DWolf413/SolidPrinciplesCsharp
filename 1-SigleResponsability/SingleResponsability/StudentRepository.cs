@@ -14,7 +14,7 @@ namespace SingleResponsability
 
         private void InitData()
         {
-            storage.Add(new Student(1, "Pepito Pérez", new List<double>() { 3, 4.5 }));
+            storage.Add(new Student(1, "David Logacho", new List<double>() { 3, 4.5 }));
             storage.Add(new Student(2, "Mariana Lopera", new List<double>() { 4, 5 }));
             storage.Add(new Student(3, "José Molina", new List<double>() { 2, 3 }));
         }

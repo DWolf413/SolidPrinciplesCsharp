@@ -1,20 +1,36 @@
-﻿using System.Text;
+﻿using System.Collections;
+using System.Text;
 
 namespace SingleResponsability
 {
     public class ExportHelper
     {
-        public void ExportStudents(IEnumerable<Student> students)
+        public static void ExportCSV<T>(IEnumerable<T> items) where T : class
         {
-            //IEnumerable<Student> students = this.GetAll();
-            string csv = String.Join(",", students.Select(x => x.ToString()).ToArray());
-            System.Text.StringBuilder sb = new System.Text.StringBuilder();
-            sb.AppendLine("Id;Fullname;Grades");
-            foreach (var item in students)
+
+            StringBuilder sb = new StringBuilder();
+            string csvHeader = String.Join(";", typeof(T).GetProperties().Select(x => x.Name.ToString()));
+            sb.AppendLine(csvHeader);
+
+            foreach (var item in items)
             {
-                sb.AppendLine($"{item.Id};{item.Fullname};{string.Join("|", item.Grades)}");
+                string csvData = String.Join(";", typeof(T).GetProperties().Select(x => 
+                {
+                    object? valueProperty = x.GetValue(item);
+                    if (valueProperty is null) return string.Empty;
+                    else if (valueProperty is not String && valueProperty is IEnumerable valuesListProperty)
+                    {
+                        string line = string.Empty;
+                        var valores = valuesListProperty.Cast<object>().ToList().Select(x => x);
+                        line += string.Join("|", valores);
+                        return line;
+                    }
+                    else return valueProperty;
+                }));
+                
+                sb.AppendLine(csvData);
             }
-            System.IO.File.WriteAllText(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Students.csv"), sb.ToString(), Encoding.Unicode);
+            System.IO.File.WriteAllText(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"{typeof(T).Name}.csv"), sb.ToString(), Encoding.Unicode);
 
         }
     }
