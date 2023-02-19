@@ -8,8 +8,16 @@ namespace LiskovSubstitution
 {
     public class EmployeeFullTime : Employee
     {
-        public EmployeeFullTime(string fullname, int hoursWorked, int extraHours) : base(fullname, hoursWorked, extraHours)
+        public int ExtraHours { get; set; }
+        public EmployeeFullTime(string fullname, int hoursWorked, int extraHours) : base(fullname, hoursWorked)
         {
+            
         }
-    }
+
+        public override decimal CalculateSalary()
+        {
+            decimal hourValue = 50;
+            return hourValue * (HoursWorked + ExtraHours);
+        }
+}
 }
