@@ -11,7 +11,7 @@ namespace LiskovSubstitution
         public int ExtraHours { get; set; }
         public EmployeeFullTime(string fullname, int hoursWorked, int extraHours) : base(fullname, hoursWorked)
         {
-            
+            ExtraHours = extraHours;
         }
 
         public override decimal CalculateSalary()
