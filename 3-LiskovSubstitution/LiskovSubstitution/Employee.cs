@@ -16,7 +16,7 @@ namespace LiskovSubstitution
         {
             Fullname = fullname;
             HoursWorked = hoursWorked;
-            ExtraHours = extraHours;
+            
         }
 
         public virtual decimal CalculateSalary(bool IsFullTime) 
