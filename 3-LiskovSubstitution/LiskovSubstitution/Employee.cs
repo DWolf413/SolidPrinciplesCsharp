@@ -12,10 +12,11 @@ namespace LiskovSubstitution
         public int HoursWorked { get; set; }
         public int ExtraHours { get; set; }
 
-        public Employee(string fullname, int hoursWorked)
+        public Employee(string fullname, int hoursWorked, int extraHours)
         {
             Fullname = fullname;
             HoursWorked = hoursWorked;
+            ExtraHours = extraHours;
         }
 
         public virtual decimal CalculateSalary(bool IsFullTime) 

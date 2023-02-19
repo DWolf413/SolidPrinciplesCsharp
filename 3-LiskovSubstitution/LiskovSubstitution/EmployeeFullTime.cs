@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace LiskovSubstitution
 {
-    internal class EmployeeFullTime
+    public class EmployeeFullTime : Employee
     {
+        public EmployeeFullTime(string fullname, int hoursWorked, int extraHours) : base(fullname, hoursWorked, extraHours)
+        {
+        }
     }
 }
