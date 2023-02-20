@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 
 namespace DependecyInversion.Repository
 {
-    public class StudentRepository
+    public class StudentRepository : IStudentRepository
     {
         private static ObservableCollection<Student> collection;
 

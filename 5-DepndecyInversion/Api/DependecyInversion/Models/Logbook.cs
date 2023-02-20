@@ -2,7 +2,7 @@
 
 namespace DependecyInversion.Models
 {
-    public class Logbook
+    public class Logbook : ILogbook
     {
         public void Add(string description)
         {
